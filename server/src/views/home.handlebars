@@ -1,0 +1,32 @@
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+<h1>{{message}}</h1>
+
+<h1>Lista de productos usando Socket</h1>
+
+<ul>
+  {{#each products}}
+    <li>
+      <strong>{{title}}</strong> - ${{price}}
+    </li>
+  {{/each}}
+</ul>
+
+<script>
+  const socket = io();
+
+  socket.on('connect', () => {
+    console.log('Conectado al servidor Socket.io'); //Esto es en el navegador, pues estoy en FE
+  });
+
+  socket.on("update-products", (data) => {
+    console.log("Productos recibidos por websocket:", data); //Me muestra por consola tb los productos recibidos por websocket
+  });
+</script>
+
+{{!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+
+
+
+
+{{!-- <script src="../js/index.js"></script> --}}
